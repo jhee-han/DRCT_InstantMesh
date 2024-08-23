@@ -1,0 +1,9 @@
+[submodule "DRCT"]
+	path = DRCT
+	url = https://github.com/ming053l/DRCT.git
+[submodule "IPG"]
+	path = IPG
+	url = https://github.com/huawei-noah/Efficient-Computing.git
+[submodule "SR_InstantMesh"]
+	path = SR_InstantMesh
+	url = https://github.com/jhee-han/SR_InstantMesh.git
