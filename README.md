@@ -28,10 +28,10 @@ https://github.com/TencentARC/InstantMesh/assets/20635237/dab3511e-e7c6-4c0b-bab
 
 # ⚙️ Dependencies and Installation
 
-We recommend using `Python>=3.10`, `PyTorch>=2.1.0`, and `CUDA>=12.1`.
+We recommend used `Python>=3.10`, `PyTorch>=2.1.0`, and `CUDA=11.8`.
 ```bash
-conda create --name instantmesh python=3.10
-conda activate instantmesh
+conda create --name sr_instantmesh python=3.10
+conda activate sr_instantmesh
 pip install -U pip
 
 # Ensure Ninja is installed
@@ -42,8 +42,8 @@ conda install cuda -c nvidia/label/cuda-12.1.0
 
 # Install PyTorch and xformers
 # You may need to install another xformers version if you use a different PyTorch version
-pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
-pip install xformers==0.0.22.post7
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+pip install xformers==0.0.22.post4 --index-url https://download.pytorch.org/whl/cu118
 
 # For Linux users: Install Triton 
 pip install triton
@@ -53,6 +53,22 @@ pip install https://huggingface.co/r4ziel/xformers_pre_built/resolve/main/triton
 
 # Install other requirements
 pip install -r requirements.txt
+
+#Install requirements for DRCT
+cd DRCT
+pip install -r requirements.txt
+python setup.py develop
+
+#Install requirements for IPG
+#The version of wheel you're using (0.26.0) is quite old, which might be causing compatibility issues.
+#Update both packages to the latest versions:
+#pip install --upgrade setuptools wheel
+
+cd ..
+cd IPG
+pip install wheel==0.26 
+pip install -r requirements.txt
+python setup.py install
 ```
 
 # 💫 How to Use
@@ -132,6 +148,38 @@ If you find our work useful for your research or applications, please cite using
   year={2024}
 }
 ```
+# How to SR_InstantMesh
+
+To generate 3D meshes from images via command line, simply run (After --copy_dir, input DRCT/datasets or IPG/imgs) :
+```bash
+python run.py configs/instant-mesh-large.yaml /hdd/jhee/3D/SR_InstantMesh/examples/p01_01.png --copy_dir /hdd/jhee/3D/SR_InstantMesh/DRCT/datasets --export_texmap --export_texmap
+
+```
+
+To apply super resolution to an image with the DRCT model:
+```bash
+cd DRCT
+python inference.py --input /hdd/jhee/3D/SR_InstantMesh/DRCT/datasets --output /hdd/jhee/3D/SR_InstantMesh/DRCT/results --model_path /hdd/jhee/3D/SR_InstantMesh/DRCT/pretrained_models/DRCT_SRx4_ImageNet-pretrain.pth
+
+```
+
+If you use the DRCT model for super resolution, you can perform Instant Mesh by running:
+```bash
+python sr_run.py configs/instant-mesh-large.yaml --export_texmap --drct
+
+```
+
+If you use the IPG model for super resolution, you can perform Instant Mesh by running:
+```bash
+python sr_run.py configs/instant-mesh-large.yaml --export_texmap --lpg
+
+
+```
+
+
+
+
+
 
 # 🤗 Acknowledgements
 
