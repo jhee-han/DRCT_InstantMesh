@@ -2,13 +2,6 @@
   
 # SR_InstantMesh: Super-resolution Enhanced 3D Mesh Generation from a Single Image Using Sparse-view Large Reconstruction Models.
 
-<a href="https://arxiv.org/abs/2404.07191"><img src="https://img.shields.io/badge/ArXiv-2404.07191-brightgreen"></a> 
-<a href="https://huggingface.co/TencentARC/InstantMesh"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model_Card-Huggingface-orange"></a> 
-<a href="https://huggingface.co/spaces/TencentARC/InstantMesh"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Gradio%20Demo-Huggingface-orange"></a> <br>
-<a href="https://replicate.com/camenduru/instantmesh"><img src="https://img.shields.io/badge/Demo-Replicate-blue"></a>
-<a href="https://colab.research.google.com/github/camenduru/InstantMesh-jupyter/blob/main/InstantMesh_jupyter.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg"></a>
-<a href="https://github.com/jtydhr88/ComfyUI-InstantMesh"><img src="https://img.shields.io/badge/Demo-ComfyUI-8A2BE2"></a>
-
 </div>
 
 ---
@@ -65,32 +58,9 @@ python setup.py install
 
 ## Download the models for InstantMesh
 
-We provide 4 sparse-view reconstruction model variants and a customized Zero123++ UNet for white-background image generation in the [model card](https://huggingface.co/TencentARC/InstantMesh).
-
 Our inference script will download the models automatically. Alternatively, you can manually download the models and put them under the `ckpts/` directory.
 
 By default, we use the `instant-mesh-large` reconstruction model variant.
-
-## Start a local gradio demo
-
-To start a gradio demo in your local machine, simply run:
-```bash
-python app.py
-```
-
-If you have multiple GPUs in your machine, the demo app will run on two GPUs automatically to save memory. You can also force it to run on a single GPU:
-```bash
-CUDA_VISIBLE_DEVICES=0 python app.py
-```
-
-Alternatively, you can run the demo with docker. Please follow the instructions in the [docker](docker/) directory.
-
-## Running with command line
-
-To generate 3D meshes from images via command line, simply run:
-```bash
-python run.py configs/instant-mesh-large.yaml examples/hatsune_miku.png --save_video
-```
 
 We use [rembg](https://github.com/danielgatis/rembg) to segment the foreground object. If the input image already has an alpha mask, please specify the `no_rembg` flag:
 ```bash
@@ -111,6 +81,8 @@ python run.py configs/instant-nerf-large.yaml examples/hatsune_miku.png --save_v
 
 ## Weights & Visual Results for IPG
 
+By default, we use a 4× scale. Please download the weights from the link below and place them inside the IPG folder.
+
 | Model | Scale | Urban100 | Weights                                                      | Visual Results                                               |
 | ----- | ----- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | IPG   | 2x    | 34.48    | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_SRx2.pth) | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_srx2.zip) |
@@ -119,51 +91,43 @@ python run.py configs/instant-nerf-large.yaml examples/hatsune_miku.png --save_v
 
 ## Weights & Visual Results for DRCT
 
+Please download the pretrained model from the link below and place them inside the DRCT/experiments/pretrained_models.
+
 | [DRCT-XL (pretrained on ImageNet)](https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing) | 32.97 / 0.91 | 29.08 / 0.80 | [log](https://drive.google.com/file/d/1kl2r9TbQ8TR-sOdzvCcOZ9eqNsmIldGH/view?usp=drive_link)
 
+# Things to do before running the model
+
+1. Download the weights for IPG (skip this step if you are only using the DRCT model).
+2. Download the pretrained model for DRCT (skip this step if you are only using the IPG model).
+3. Remove every README.md file.
+4. In `SR_InstantMesh/IPG/options/test_mod/test_IPG_SR_x4.yml`, change the paths for `dataroot_lq` and `pretrain_network_g`.
+
+Once everything is ready, refer to "How to use SR_InstantMesh" to run the model.
 
 # How to use SR_InstantMesh
 
-To generate 3D meshes from images via command line, simply run (After --copy_dir, input DRCT/datasets or IPG/imgs) :
+To generate a 3D mesh using the DRCT model, simply run:
 ```bash
-python run.py configs/instant-mesh-large.yaml /hdd/jhee/3D/SR_InstantMesh/examples/p01_01.png --copy_dir /hdd/jhee/3D/SR_InstantMesh/DRCT/datasets --export_texmap --export_texmap
-
+python sr_instantmesh.py --method drct --input_image /path/to/the/input_image.png --output_dir /path/to/the/output_dir --drct_model /path/to/the/pretrained_models.pth
 ```
 
-To apply super resolution to an image with the DRCT model:
+To generate a 3D mesh using the DRCT model, simply run:
 ```bash
-cd DRCT
-python inference.py --input /hdd/jhee/3D/SR_InstantMesh/DRCT/datasets --output /hdd/jhee/3D/SR_InstantMesh/DRCT/results --model_path /hdd/jhee/3D/SR_InstantMesh/DRCT/pretrained_models/DRCT_SRx4_ImageNet-pretrain.pth
-
+python sr_instantmesh.py --method drct --input_image /path/to/the/input_image.png --output_dir /path/to/the/output_dir --drct_model /path/to/the/pretrained_models.pth
 ```
 
-If you use the DRCT model for super resolution, you can perform Instant Mesh by running:
-```bash
-python sr_run.py configs/instant-mesh-large.yaml --export_texmap --drct
-
-```
-
-To apply super resolution to an image with the IPG model:
-```bash
-cd IPG
-python basicsr/test.py --opt options/test_mod/test_IPG_SR_x4.yml --name train_IPG_SR_DF2K_x4_500000 --path__pretrain_network_g /hdd/jhee/3D/SR_InstantMesh/IPG/IPG_SRx4.pth
-
-```
-
-If you use the IPG model for super resolution, you can perform Instant Mesh by running:
-```bash
-python sr_run.py configs/instant-mesh-large.yaml --export_texmap --lpg
-
-
-```
 
 
 # 🤗 Acknowledgements
 
 We thank the authors of the following projects for their excellent contributions to 3D generative AI!
 
+- [DRTC](https://github.com/ming053l/DRCT)
+- [InstantMesh](https://instant-3d.github.io/)
+- [IPG](https://github.com/huawei-noah/Efficient-Computing/tree/master/LowLevel/IPG)
 - [Zero123++](https://github.com/SUDO-AI-3D/zero123plus)
 - [OpenLRM](https://github.com/3DTopia/OpenLRM)
 - [FlexiCubes](https://github.com/nv-tlabs/FlexiCubes)
 - [Instant3D](https://instant-3d.github.io/)
+
 
