@@ -11,7 +11,7 @@ This repo is the official implementation of SR_InstantMesh, where we have applie
 
 # ⚙️ Dependencies and Installation
 
-We recommend used `Python>=3.10`, `PyTorch>=2.1.0`, and `CUDA=11.8`.
+We recommend used `Python>=3.10`, `PyTorch>=2.1.0`, and `CUDA>=11.8`.
 ```bash
 conda create --name sr_instantmesh python=3.10
 conda activate sr_instantmesh
@@ -19,9 +19,6 @@ pip install -U pip
 
 # Ensure Ninja is installed
 conda install Ninja
-
-# Install the correct version of CUDA
-conda install cuda -c nvidia/label/cuda-12.1.0
 
 # Install PyTorch and xformers
 # You may need to install another xformers version if you use a different PyTorch version
