@@ -2,8 +2,6 @@
   
 # SR_InstantMesh: Super-resolution Enhanced 3D Mesh Generation from a Single Image Using Sparse-view Large Reconstruction Models.
 
-</div>
-
 ---
 
 This repo is the official implementation of SR_InstantMesh, where we have fine-tuned IPG and DRCT for super-resolution and InstantMesh for efficient 3D mesh generation from a single image based on the LRM/Instant3D architecture.
