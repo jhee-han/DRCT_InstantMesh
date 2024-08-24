@@ -1,6 +1,6 @@
 <div align="center">
   
-# InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models
+# SR_InstantMesh: Super-resolution Enhanced 3D Mesh Generation from a Single Image Using Sparse-view Large Reconstruction Models.
 
 <a href="https://arxiv.org/abs/2404.07191"><img src="https://img.shields.io/badge/ArXiv-2404.07191-brightgreen"></a> 
 <a href="https://huggingface.co/TencentARC/InstantMesh"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model_Card-Huggingface-orange"></a> 
@@ -13,18 +13,10 @@
 
 ---
 
-This repo is the official implementation of InstantMesh, a feed-forward framework for efficient 3D mesh generation from a single image based on the LRM/Instant3D architecture.
+This repo is the official implementation of SR_InstantMesh, where we have fine-tuned IPG and DRCT for super-resolution and InstantMesh for efficient 3D mesh generation from a single image based on the LRM/Instant3D architecture.
 
 https://github.com/TencentARC/InstantMesh/assets/20635237/dab3511e-e7c6-4c0b-bab7-15772045c47d
 
-# 🚩 Features and Todo List
-- [x] 🔥🔥 Release Zero123++ fine-tuning code. 
-- [x] 🔥🔥 Support for running gradio demo on two GPUs to save memory.
-- [x] 🔥🔥 Support for running demo with docker. Please refer to the [docker](docker/) directory.
-- [x] Release inference and training code.
-- [x] Release model weights.
-- [x] Release huggingface gradio demo. Please try it at [demo](https://huggingface.co/spaces/TencentARC/InstantMesh) link.
-- [ ] Add support for more multi-view diffusion models.
 
 # ⚙️ Dependencies and Installation
 
@@ -118,36 +110,6 @@ python run.py configs/instant-nerf-large.yaml examples/hatsune_miku.png --save_v
 ```
 **Note:** When using the `NeRF` model variants for image-to-3D generation, exporting a mesh with texture map by specifying `--export_texmap` may cost long time in the UV unwarping step since the default iso-surface extraction resolution is `256`. You can set a lower iso-surface extraction resolution in the config file.
 
-# 💻 Training
-
-We provide our training code to facilitate future research. But we cannot provide the training dataset due to its size. Please refer to our [dataloader](src/data/objaverse.py) for more details.
-
-To train the sparse-view reconstruction models, please run:
-```bash
-# Training on NeRF representation
-python train.py --base configs/instant-nerf-large-train.yaml --gpus 0,1,2,3,4,5,6,7 --num_nodes 1
-
-# Training on Mesh representation
-python train.py --base configs/instant-mesh-large-train.yaml --gpus 0,1,2,3,4,5,6,7 --num_nodes 1
-```
-
-We also provide our Zero123++ fine-tuning code since it is frequently requested. The running command is:
-```bash
-python train.py --base configs/zero123plus-finetune.yaml --gpus 0,1,2,3,4,5,6,7 --num_nodes 1
-```
-
-# :books: Citation
-
-If you find our work useful for your research or applications, please cite using this BibTeX:
-
-```BibTeX
-@article{xu2024instantmesh,
-  title={InstantMesh: Efficient 3D Mesh Generation from a Single Image with Sparse-view Large Reconstruction Models},
-  author={Xu, Jiale and Cheng, Weihao and Gao, Yiming and Wang, Xintao and Gao, Shenghua and Shan, Ying},
-  journal={arXiv preprint arXiv:2404.07191},
-  year={2024}
-}
-```
 
 ## Weights & Visual Results for IPG
 
@@ -162,8 +124,7 @@ If you find our work useful for your research or applications, please cite using
 | [DRCT-XL (pretrained on ImageNet)](https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing) |  -  | - | - | - | 32.97 / 0.91 | 29.08 / 0.80  | - | - | - | [log](https://drive.google.com/file/d/1kl2r9TbQ8TR-sOdzvCcOZ9eqNsmIldGH/view?usp=drive_link)
 
 
-
-# How to SR_InstantMesh
+# How to use SR_InstantMesh
 
 To generate 3D meshes from images via command line, simply run (After --copy_dir, input DRCT/datasets or IPG/imgs) :
 ```bash
@@ -192,10 +153,6 @@ python sr_run.py configs/instant-mesh-large.yaml --export_texmap --lpg
 ```
 
 
-
-
-
-
 # 🤗 Acknowledgements
 
 We thank the authors of the following projects for their excellent contributions to 3D generative AI!
@@ -205,5 +162,3 @@ We thank the authors of the following projects for their excellent contributions
 - [FlexiCubes](https://github.com/nv-tlabs/FlexiCubes)
 - [Instant3D](https://instant-3d.github.io/)
 
-Thank [@camenduru](https://github.com/camenduru) for implementing [Replicate Demo](https://replicate.com/camenduru/instantmesh) and [Colab Demo](https://colab.research.google.com/github/camenduru/InstantMesh-jupyter/blob/main/InstantMesh_jupyter.ipynb)!  
-Thank [@jtydhr88](https://github.com/jtydhr88) for implementing [ComfyUI support](https://github.com/jtydhr88/ComfyUI-InstantMesh)!
