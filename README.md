@@ -143,6 +143,13 @@ python sr_run.py configs/instant-mesh-large.yaml --export_texmap --drct
 
 ```
 
+To apply super resolution to an image with the IPG model:
+```bash
+cd IPG
+python basicsr/test.py --opt options/test_mod/test_IPG_SR_x4.yml --name train_IPG_SR_DF2K_x4_500000 --path__pretrain_network_g /hdd/jhee/3D/SR_InstantMesh/IPG/IPG_SRx4.pth
+
+```
+
 If you use the IPG model for super resolution, you can perform Instant Mesh by running:
 ```bash
 python sr_run.py configs/instant-mesh-large.yaml --export_texmap --lpg
