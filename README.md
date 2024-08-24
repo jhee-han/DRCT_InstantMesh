@@ -15,8 +15,6 @@
 
 This repo is the official implementation of SR_InstantMesh, where we have fine-tuned IPG and DRCT for super-resolution and InstantMesh for efficient 3D mesh generation from a single image based on the LRM/Instant3D architecture.
 
-https://github.com/TencentARC/InstantMesh/assets/20635237/dab3511e-e7c6-4c0b-bab7-15772045c47d
-
 
 # ⚙️ Dependencies and Installation
 
