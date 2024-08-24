@@ -65,7 +65,7 @@ python setup.py install
 
 # 💫 How to Use
 
-## Download the models
+## Download the models for InstantMesh
 
 We provide 4 sparse-view reconstruction model variants and a customized Zero123++ UNet for white-background image generation in the [model card](https://huggingface.co/TencentARC/InstantMesh).
 
@@ -121,7 +121,7 @@ python run.py configs/instant-nerf-large.yaml examples/hatsune_miku.png --save_v
 
 ## Weights & Visual Results for DRCT
 
-| [DRCT-XL (pretrained on ImageNet)](https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing) |  -  | - | - | - | 32.97 / 0.91 | 29.08 / 0.80  | - | - | - | [log](https://drive.google.com/file/d/1kl2r9TbQ8TR-sOdzvCcOZ9eqNsmIldGH/view?usp=drive_link)
+| [DRCT-XL (pretrained on ImageNet)](https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing) | 32.97 / 0.91 | 29.08 / 0.80 | [log](https://drive.google.com/file/d/1kl2r9TbQ8TR-sOdzvCcOZ9eqNsmIldGH/view?usp=drive_link)
 
 
 # How to use SR_InstantMesh
