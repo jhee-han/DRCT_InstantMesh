@@ -94,8 +94,8 @@ Please download the pretrained model from the link below and place them inside t
 
 # Things to do before running the model
 
-1. Download the weights for IPG (skip this step if you are only using the DRCT model).
-2. Download the pretrained model for DRCT (skip this step if you are only using the IPG model).
+1. Download the weights for IPG (Skip this step if you are only using the DRCT model).
+2. Download the pretrained model for DRCT (Skip this step if you are only using the IPG model).
 3. Remove every README.md file.
 4. In `SR_InstantMesh/IPG/options/test_mod/test_IPG_SR_x4.yml`, change the paths for `dataroot_lq` and `pretrain_network_g`.
 
@@ -105,12 +105,12 @@ Once everything is ready, refer to "How to use SR_InstantMesh" to run the model.
 
 To generate a 3D mesh using the DRCT model, simply run:
 ```bash
-python sr_instantmesh.py --method drct --input_image /path/to/the/input_image.png --output_dir /path/to/the/output_dir --drct_model /path/to/the/pretrained_models.pth
+python sr_instantmesh.py --method drct --input_image /path/to/the/input_image.png --output_dir /path/to/the/output_dir/IPG/imgs --drct_model /path/to/the/pretrained_models.pth
 ```
 
-To generate a 3D mesh using the DRCT model, simply run:
+To generate a 3D mesh using the IPG model, simply run:
 ```bash
-python sr_instantmesh.py --method drct --input_image /path/to/the/input_image.png --output_dir /path/to/the/output_dir --drct_model /path/to/the/pretrained_models.pth
+python sr_instantmesh.py --method ipg --input_image /path/to/the/input_image.png --output_dir /path/to/the/output_dir/DRCT/results --ipg_model /path/to/the/checkpoints.pth
 ```
 
 
