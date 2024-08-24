@@ -47,6 +47,15 @@ def main():
         imgname = os.path.splitext(os.path.basename(path))[0]
         print('Testing', idx, imgname)
         # read image
+
+        # # 이미지 파일이 제대로 읽혔는지 확인하기 위해 추가
+        # print(f"Processing file: {path}")
+        # img = cv2.imread(path, cv2.IMREAD_COLOR)
+        # if img is None:
+        #     print(f"Failed to load image at path: {path}")
+        # else:
+        #     print(f"Loaded image shape: {img.shape}")
+
         img = cv2.imread(path, cv2.IMREAD_COLOR).astype(np.float32) / 255.
         img = torch.from_numpy(np.transpose(img[:, :, [2, 1, 0]], (2, 0, 1))).float()
         

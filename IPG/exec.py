@@ -84,7 +84,7 @@ if __name__ == '__main__':
     parser.add_argument('--model_type', type=str, default='IPG')
     parser.add_argument('--data_dir', type=str, default='../SRdata') # relative to codebase, not container
     # crucial parsers for running
-    parser.add_argument('--scale', type=int, default=2)
+    parser.add_argument('--scale', type=int, default=4)
     parser.add_argument('--train__total_iter', type=int, default=500000)
 
     # autoset if None
