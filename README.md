@@ -148,6 +148,21 @@ If you find our work useful for your research or applications, please cite using
   year={2024}
 }
 ```
+
+## Weights & Visual Results for IPG
+
+| Model | Scale | Urban100 | Weights                                                      | Visual Results                                               |
+| ----- | ----- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| IPG   | 2x    | 34.48    | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_SRx2.pth) | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_srx2.zip) |
+| IPG   | 3x    | 30.36    | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_SRx3.pth) | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_srx3.zip) |
+| IPG   | 4x    | 28.13    | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_SRx4.pth) | [🤗Link](https://huggingface.co/yuchuantian/IPG/blob/main/IPG_srx4.zip) |
+
+## Weights & Visual Results for DRCT
+
+| [DRCT-XL (pretrained on ImageNet)](https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing) |  -  | - | - | - | 32.97 / 0.91 | 29.08 / 0.80  | - | - | - | [log](https://drive.google.com/file/d/1kl2r9TbQ8TR-sOdzvCcOZ9eqNsmIldGH/view?usp=drive_link)
+
+
+
 # How to SR_InstantMesh
 
 To generate 3D meshes from images via command line, simply run (After --copy_dir, input DRCT/datasets or IPG/imgs) :
