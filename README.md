@@ -43,6 +43,9 @@ python setup.py develop
 #The version of wheel you're using (0.26.0) is quite old, which might be causing compatibility issues.
 #Update both packages to the latest versions:
 #pip install --upgrade setuptools wheel
+#If you get ModuleNotFoundError: No module named 'ipg_kit' , add the Module to Your Python Path.
+#for example, export PYTHONPATH=$PYTHONPATH:/hdd/jhee/3D/SR_InstantMesh/IPG/
+
 
 cd ..
 cd IPG
