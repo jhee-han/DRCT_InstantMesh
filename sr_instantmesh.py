@@ -36,7 +36,7 @@ def main():
         # Run IPG Super Resolution
         ipg_dir = "IPG"
         os.chdir(ipg_dir)
-        ipg_cmd = (f"python exec.py --eval_folder {args.ipg_model} --eval_opt /hdd/jhee/3D/SR_InstantMesh/IPG/options/test_mod/test_IPG_SR_x4.yml")
+        ipg_cmd = (f"python exec.py --eval_folder {args.ipg_model} --eval_opt options/test_mod/test_IPG_SR_x4.yml")
 
         run_command(ipg_cmd)
         os.chdir("..")  
