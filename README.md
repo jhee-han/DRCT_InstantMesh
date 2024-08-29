@@ -93,7 +93,7 @@ By default, we use a 4× scale. Please download the weights from the link below 
 
 Please download the pretrained model from the link below and place them inside the DRCT/experiments/pretrained_models.
 
-| [DRCT-L ]([https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing](https://drive.google.com/file/d/1bVxvA6QFbne2se0CQJ-jyHFy94UOi3h5/view?usp=sharing) )
+| [DRCT-L ]([https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing](https://drive.google.com/file/d/1bVxvA6QFbne2se0CQJ-jyHFy94UOi3h5/view?usp=sharing) 
 # Things to do before running the model
 
 1. Download the weights for IPG (Skip this step if you are only using the DRCT model).
