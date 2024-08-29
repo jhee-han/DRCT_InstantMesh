@@ -100,6 +100,7 @@ Please download the pretrained model from the link below and place them inside t
 2. Download the pretrained model for DRCT (Skip this step if you are only using the IPG model).
 3. Remove every README.md file.
 4. In `SR_InstantMesh/IPG/options/test_mod/test_IPG_SR_x4.yml`, change the paths for `dataroot_lq` and `pretrain_network_g`. (Skip this step if you are only using the DRCT model).
+5. If you want to run DRCT or IPG once and then execute sr_instantmesh with a different input image, make sure to delete all contents inside the following directories so that they are empty: `/DRCT/datasets`, `/DRCT/results`, `/IPG/imgs`, and `/IPG/results`.
 
 Once everything is ready, refer to "How to use SR_InstantMesh" to run the model.
 
