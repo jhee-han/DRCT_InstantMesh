@@ -96,7 +96,7 @@ Please download the pretrained model from the link below and place them inside t
 | [DRCT-L ]([https://drive.google.com/file/d/1uLGwmSko9uF82X4OPOMw3xfM3stlnYZ-/view?usp=sharing](https://drive.google.com/file/d/1bVxvA6QFbne2se0CQJ-jyHFy94UOi3h5/view?usp=sharing) 
 # Things to do before running the model
 
-1. Download the weights for IPG (Skip this step if you are only using the DRCT model).
+1. Download the weights for IPG with the Scale 4x (Skip this step if you are only using the DRCT model).
 2. Download the pretrained model for DRCT (Skip this step if you are only using the IPG model).
 3. Remove every README.md file.
 4. In `SR_InstantMesh/IPG/options/test_mod/test_IPG_SR_x4.yml`, change the paths for `dataroot_lq` and `pretrain_network_g`. (Skip this step if you are only using the DRCT model).
